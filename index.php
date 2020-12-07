@@ -109,7 +109,7 @@
             <div class="row">
    <div class="col-md-6 px-0">
      <h1 class="display-4 font-italic">Showcasing php, and what it can do</h1>
-     <p class="lead my-3">php as we know it was first designed in 1998. The Eight Hallmarks of Mastering a Programming language, including but not limited to: <strong>outputting data, user input, variable math, comparisons, functions, "if" statements, loops, arrays </strong>
+     <p class="lead my-3">php as we know it was first designed in 1998. The Eight Hallmarks of Mastering a Programming language, including but not limited to: <strong>outputting data, user input, variable math, comparisons, functions, "if" statements, loops, arrays </strong>, exist in varying capacities.
      <p class="lead mb-0"><a href="#" class="text-white font-weight-bold">Continue reading...</a></p>
    </div>
       <div class="col-md-6 px-0 text-center">
@@ -199,9 +199,9 @@
   </div>
   <button type="submit" class="btn btn-dark">Sign in</button>
 </form>
-<?php if (isset($_POST['name'])): ?>
-<?php echo htmlspecialchars($_POST["name"]); ?>!<br>
-<?php echo htmlspecialchars($_POST["email"]); ?>.<br>
+<?php if (isset($_POST['email'])): ?>
+<?php echo htmlspecialchars($_POST["email"]); ?>!<br>
+<?php echo htmlspecialchars($_POST["password"]); ?>.<br>
 <?php echo htmlspecialchars($_POST["address"]); ?>.<br>
 <?php echo htmlspecialchars($_POST["address2"]); ?>.<br>
 <?php echo htmlspecialchars($_POST["city"]); ?>.<br>
@@ -232,8 +232,13 @@
            </form>
 
            <?php if (isset($_POST['num1'])): ?>
-           <?php $num1 = $_POST["num1"]; ?>
-            <?php $num2 = $_POST["num2"]; ?>
+             <?php try {
+               $num1 = $_POST["num1"];
+                $num2 = $_POST["num2"];
+              } catch (Exception $e) {
+                echo 'Caught exception: ',  $e->getMessage(), "\n";
+              }
+              ?>
             <?php echo $num1 + $num2; ?>
            <?php endif; ?>
          </div>
@@ -331,10 +336,8 @@
          <div class="form-group col-sm-4">
            <label for="inputEmail4">Output: </label>
            <?php if (isset($_POST['num6'])): ?>
-           <?php $num5 = $_POST["num6"]; ?>
-           <?php $arr = array(); ?>
-            <?php for($i = 0; $i < $num6; $i++){ $arr[$i] = $i; }?>
-            <?php echo '<pre>' + print_r($arr) ?>
+           <?php $num6 = $_POST["num6"]; ?>
+            <?php for($i = 0; $i < $num6; $i++){ echo $i; }?>
            <?php endif; ?>
          </div>
            </form>
@@ -359,23 +362,25 @@
            <form action="<?php echo htmlspecialchars($_SERVER["PHP_SELF"]); ?>" method="POST">
            <div class="row">
              <div class="form-group col-md-">
-               <input type="number" class="form-control" style="" id="inputEmail4" name="num5" placeholder="ex: 5">
+               <input type="number" class="form-control" style="" id="inputEmail4" name="num7" placeholder="ex: 5">
              </div>
              <div class="col-sm-2">
            <input class="btn btn-dark form-group" type="submit">
          </div>
          </div>
            </form>
-           <?php if (isset($_POST['num5'])): ?>
-           <?php $num5 = $_POST["num5"]; ?>
-            <?php for($i = 0; $i < $num5; $i++){ echo $i; }?>
+           <?php if (isset($_POST['num7'])): ?>
+           <?php $num7 = $_POST["num7"]; ?>
+           <?php $arr = array(); ?>
+            <?php for($i = 0; $i < $num7; $i++){ $arr[$i] = $i; }?>
+            <?php echo print_r($arr) ?>
            <?php endif; ?>
          </div>
          <div class="p-3 p-md-5 text-black rounded bg-light shadow-sm p-3 mb-5 lead my-3">
            Php allows the creation, population, and traversal of arrays. In the above example we allow the user to create an array with a length they provide, then the array is populated at a given index with its index value. For example, the array <code>$arr = array(); </code> creates an array. Then the array at index 0 is set to the value 0. <code>$arr[0] = 0; </code></div>
            <div class="wrapper">
 
-                 <img src="http://localhost/ppl/screenshots/loop.png" style="width: 100%; height: 100%;"/>
+                 <img src="http://localhost/ppl/screenshots/array.png" style="width: 100%; height: 100%;"/>
                </div>
 </div>
         </main>
@@ -466,9 +471,9 @@
           <h5>About</h5>
           <ul class="list-unstyled text-small">
             <li><a class="text-muted" href="#">Team</a></li>
-            <li><a class="text-muted" href="#">Locations</a></li>
-            <li><a class="text-muted" href="#">Privacy</a></li>
-            <li><a class="text-muted" href="#">Terms</a></li>
+            <li><a class="text-muted" href="https://www.w3schools.com/php/DEFAULT.asp">w3 Schools</a></li>
+            <li><a class="text-muted" href="https://www.php.net/">PHP</a></li>
+            <li><a class="text-muted" href="https://www.tutorialspoint.com/php/index.htm">TutorialsPoint</a></li>
           </ul>
         </div>
       </div>
